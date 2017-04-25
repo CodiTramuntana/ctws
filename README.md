@@ -13,7 +13,7 @@ Bug reports and pull requests are welcome on GitHub. This project is intended to
 
 # About CodiTramuntana
 
-![coditramuntana](http://www.coditramuntana.com/assets/ic_logo_medium.png)
+![CodiTramuntana's Logo](https://avatars0.githubusercontent.com/u/27996979?v=3&u=b0256e23ae7b2f237e3d1b5f2b2abdfe3092b24c&s=400)
 
 Maintained by [CodiTramuntana](http://www.coditramuntana.com).
 
