@@ -1,5 +1,7 @@
 module Ctws
   class MinAppVersionsController < CtwsController
+    #skip_before_action :authorize_request, only: :min_app_version
+    skip_before_action :authorize_request, only: [:min_app_version]
     before_action :set_min_app_version, only: [:show, :update, :destroy]
 
     # GET /min_app_version

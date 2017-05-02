@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
   
   s.add_dependency "rails", "~> 5.0.2"
+  s.add_dependency "bcrypt", "~> 3.1.7"
+  s.add_dependency "jwt"
   # s.add_dependency "rack-cors", require: 'rack/cors'
   # s.add_dependency "rack-attack"
 

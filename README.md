@@ -1,6 +1,8 @@
 # ctws
 
-Rails gem to be used as Webservice base.
+Rails gem to be used as Webservice RESTful JSON API with Rails 5.
+
+With `MinAppVersion` resource, and token based authentication with [JSON Web Tokens](https://jwt.io/).
 
 ## Usage
 How to use my plugin.
@@ -51,14 +53,16 @@ bin/rails db:migrate SCOPE=ctws VERSION=0
 
 ## Endpoints
 
-| Endpoint                                      | Functionality                                    |
-| --------------------------------------------- | ------------------------------------------------:|
-| GET /ws/v1/min_app_version                    | Get latest minimum app version for all platforms |
-| GET /ws/v1/min_app_versions                   | List all min_app_versions                        |
-| GET /ctws/v1/min_app_versions/:id             | Get a min_app_version                            |
-| POST /ctws/v1/min_app_versions                | Creates a min_app_version                        |
-| PUT /ctws/v1/min_app_versions/:id             | Updates a min_app_version                        |
-| DELETE /ctws/v1/min_app_versions/:id          | Delete a min_app_version                         |
+| Endpoint                                           | Functionality                                    | Requires Authentication?  |
+| -------------------------------------------------- | -----------------------------------------------: | :-----------------------: |
+| `GET    /ws/v1/min_app_version`                    | Get latest minimum app version for all platforms | No                        |
+| `GET    /ws/v1/min_app_versions`                   | List all min_app_versions                        | Yes                       |
+| `GET    /ctws/v1/min_app_versions/:id `            | Get a min_app_version                            | Yes                       |
+| `POST   /ctws/v1/min_app_versions`                 | Creates a min_app_version                        | Yes                       |
+| `PUT    /ctws/v1/min_app_versions/:id`             | Updates a min_app_version                        | Yes                       |
+| `DELETE /ctws/v1/min_app_versions/:id`             | Delete a min_app_version                         | Yes                       |
+| `POST   /v1/signup`                                | Signup                                           | No                        |
+| `POST   /v1/login`                                 | Login                                            | No                        |
 
 
 ## Tests

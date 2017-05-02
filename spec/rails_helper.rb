@@ -6,8 +6,8 @@ require File.expand_path("../dummy/config/environment.rb", __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
-require 'helpers/request_spec_helper'
 require 'rspec/rails'
+require 'jwt'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'database_cleaner'
@@ -79,7 +79,8 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
   
-  config.include RequestSpecHelper, type: :request
+  config.include Ctws::RequestSpecHelper
+  config.include Ctws::ControllerSpecHelper
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
