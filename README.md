@@ -55,14 +55,14 @@ bin/rails db:migrate SCOPE=ctws VERSION=0
 
 | Endpoint                                           | Functionality                                    | Requires Authentication?  |
 | -------------------------------------------------- | -----------------------------------------------: | :-----------------------: |
-| `GET    /ws/v1/min_app_version`                    | Get latest minimum app version for all platforms | No                        |
-| `GET    /ws/v1/min_app_versions`                   | List all min_app_versions                        | Yes                       |
+| `GET    /ctws/v1/min_app_version`                  | Get latest minimum app version for all platforms | No                        |
+| `GET    /ctws/v1/min_app_versions`                 | List all min_app_versions                        | Yes                       |
 | `GET    /ctws/v1/min_app_versions/:id `            | Get a min_app_version                            | Yes                       |
 | `POST   /ctws/v1/min_app_versions`                 | Creates a min_app_version                        | Yes                       |
 | `PUT    /ctws/v1/min_app_versions/:id`             | Updates a min_app_version                        | Yes                       |
 | `DELETE /ctws/v1/min_app_versions/:id`             | Delete a min_app_version                         | Yes                       |
-| `POST   /v1/signup`                                | Signup                                           | No                        |
-| `POST   /v1/login`                                 | Login                                            | No                        |
+| `POST   /ctws/signup`                              | Signup                                           | No                        |
+| `POST   /ctws/login`                               | Login                                            | No                        |
 
 
 ## Tests

@@ -45,6 +45,3 @@ module Ctws
     end
   end
 end
-
-# http POST :3000/ws/v1/min_app_versions codename="Test Version" description="Lorem ipsum dolor sit amet." platform="ios" min_version="2.0.1" store_uri="https://store.example.com"
-# http PUT :3000/ws/v1/min_app_versions/2 codename="TTest Version Edit" min_version="3.0.0"

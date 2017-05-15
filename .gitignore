@@ -40,3 +40,6 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+spec/dummy/db/test.sqlite3
+spec/dummy/log/test.log
