@@ -61,7 +61,7 @@ Ctws.user_class = "Account"
 
 The application `User` model **must have `email` and `password` attributes**.
 
-For `password` validation `[ActiveModel::SecurePassword::InstanceMethodsOnActivation authenticate](https://apidock.com/rails/v4.2.7/ActiveModel/SecurePassword/InstanceMethodsOnActivation/authenticate)` and `[Devise::Models::DatabaseAuthenticatable#valid_password?](http://www.rubydoc.info/github/plataformatec/devise/Devise%2FModels%2FDatabaseAuthenticatable:valid_password%3F)` User instance methods are supported.
+For `password` validation [`ActiveModel::SecurePassword::InstanceMethodsOnActivation authenticate`](https://apidock.com/rails/v4.2.7/ActiveModel/SecurePassword/InstanceMethodsOnActivation/authenticate) and [`Devise::Models::DatabaseAuthenticatable#valid_password?`](http://www.rubydoc.info/github/plataformatec/devise/Devise%2FModels%2FDatabaseAuthenticatable:valid_password%3F) User instance methods are supported.
 
 <!--
 Change the app's models so that they know that they are supposed to act like ctws:
