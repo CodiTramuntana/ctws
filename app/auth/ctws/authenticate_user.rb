@@ -16,8 +16,12 @@ module Ctws
     
     # verify user credentials
     def user
-      user = Ctws::User.find_by(email: email)
-      return user if user && user.authenticate(password)
+      user = Ctws.user_class.find_by(email: email)
+      
+      # try method of  Active Record's has_secure_password or Devise valid_password?
+      authenticated = user.try(:authenticate, password) || user.try(:valid_password?, password)
+      
+      return user if user && authenticated
       # raise Authentication error if credentials are invalid
       raise(Ctws::ExceptionHandler::AuthenticationError, Ctws::Message.invalid_credentials)
     end

@@ -18,7 +18,7 @@ module Ctws
     def user
       # check if user is in the database
       # memoize user object
-      @user ||= Ctws::User.find(decoded_auth_token[:user_id]) if decoded_auth_token
+      @user ||= Ctws.user_class.find(decoded_auth_token[:user_id]) if decoded_auth_token
       # handle user not found
     rescue ActiveRecord::RecordNotFound => e
       # raise custom error

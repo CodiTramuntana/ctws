@@ -33,9 +33,9 @@ mount Ctws::Engine, at: "/ws"
 ```
 
 This line will mount the engine at `/ws` in the application. Making it accessible at `http://localhost:3000/ws` when the application runs with rails
-server.
+server. It can be whatever you want.
 
-##  Engine setup
+## Engine setup
 
 The engine contains migrations for the `ctws_min_app_version` and `xxx` table which need to be created in the application's database so that the engine's models can query them correctly. 
 To copy these migrations into the application run the following command from the Rails App root, then run these migrations:
@@ -50,6 +50,30 @@ If you want to revert engine's migrations before removing it. To revert all migr
 ```bash
 bin/rails db:migrate SCOPE=ctws VERSION=0
 ```
+
+### Hook the application `User` model with the engine
+
+By default the user model is `User` but you can change it by creating a `ctws.rb` initializer file in `config/initializers` and put this content in it:
+
+```ruby 
+Ctws.user_class = "Account"
+```
+
+The application `User` model **must have `email` and `password` attributes**.
+
+For `password` validation `[ActiveModel::SecurePassword::InstanceMethodsOnActivation authenticate](https://apidock.com/rails/v4.2.7/ActiveModel/SecurePassword/InstanceMethodsOnActivation/authenticate)` and `[Devise::Models::DatabaseAuthenticatable#valid_password?](http://www.rubydoc.info/github/plataformatec/devise/Devise%2FModels%2FDatabaseAuthenticatable:valid_password%3F)` User instance methods are supported.
+
+<!--
+Change the app's models so that they know that they are supposed to act like ctws:
+
+```ruby
+# app/models/user.rb
+
+class User < ApplicationRecord
+  acts_as_ctws
+end
+```
+-->
 
 ## Endpoints
 

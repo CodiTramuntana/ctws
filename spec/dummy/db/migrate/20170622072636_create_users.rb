@@ -1,6 +1,6 @@
-class CreateCtwsUsers < ActiveRecord::Migration[5.0]
+class CreateUsers < ActiveRecord::Migration[5.0]
   def change
-    create_table :ctws_users do |t|
+    create_table :users do |t|
       t.string :email
       t.string :password_digest
 

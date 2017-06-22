@@ -15,5 +15,3 @@ module Ctws
     end
   end
 end
-
-
