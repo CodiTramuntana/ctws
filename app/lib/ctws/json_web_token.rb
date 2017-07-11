@@ -5,7 +5,7 @@ module Ctws
     # secret to encode and decode token
     HMAC_SECRET = Rails.application.secrets.secret_key_base
 
-    def self.encode(payload, exp = 24.hours.from_now)
+    def self.encode(payload, exp = Ctws.jwt_expiration_time)
       # set expiry to 24 hours from creation time
       payload[:exp] = exp.to_i
       # sign token with application secret

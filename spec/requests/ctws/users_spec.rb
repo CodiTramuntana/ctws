@@ -19,11 +19,11 @@ module Ctws
         end
         
         it 'returns success message' do
-          expect(json["data"]['message']).to match(/Account created successfully/)
+          expect(json["data"]["attributes"]["message"]).to match(/Account created successfully/)
         end
         
         it 'returns an authentication token' do
-          expect(json["data"]['auth_token']).not_to be_nil
+          expect(json["data"]["attributes"]["auth_token"]).not_to be_nil
         end
       end
       
@@ -35,8 +35,7 @@ module Ctws
         end
         
         it 'returns failure message' do
-          expect(json["data"]['message'])
-          .to match(/Validation failed: Password can't be blank, Email can't be blank, Password digest can't be blank/)
+          expect(json["errors"]['message']).not_to be_nil
         end
       end
     end

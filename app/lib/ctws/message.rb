@@ -4,6 +4,10 @@ module Ctws
       "Sorry, #{record} not found."
     end
     
+    def self.unmatched_route(route = 'route')
+      "No route matches #{route}"
+    end    
+    
     def self.invalid_credentials
       'Invalid credentials'
     end
@@ -26,6 +30,10 @@ module Ctws
     
     def self.account_not_created
       'Account could not be created'
+    end
+    
+    def self.authenticated_user_success
+      'Authenticated user successfully'
     end
     
     def self.expired_token
