@@ -8,7 +8,7 @@ module Ctws
     let(:headers) { { 'Authorization' => token_generator(ctws_user.id) } }
     let(:invalid_headers) { { 'Authorization' => nil } }
     
-    describe "#authorize_request" do
+    describe "authorize_request" do
       context "when auth token is passed" do
         before { allow(request).to receive(:headers).and_return(headers) }
         
@@ -26,6 +26,13 @@ module Ctws
         it "raises MissingToken error" do
           expect { subject.instance_eval { authorize_request } }.
           to raise_error(Ctws::ExceptionHandler::MissingToken, /Missing token/)
+        end
+      end
+    end
+    describe "routes" do
+      context "when route is not found" do
+        xit "returns 404" do
+          to raise_error(Ctws::ExceptionHandler::RoutingError, /No route matches/)
         end
       end
     end

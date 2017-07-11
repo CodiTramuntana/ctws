@@ -10,6 +10,8 @@ Ctws::Engine.routes.draw do
     get 'min_app_version', to: 'min_app_versions#min_app_version'
   end
   
+  get '*unmatched_route', to: 'ctws#raise_not_found!'
+
   # match '/', :to => 'base#raise_not_found!', via: :all
   # match '*other', :to => 'base#raise_not_found!', via: :all
 

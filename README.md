@@ -53,7 +53,7 @@ bin/rails db:migrate SCOPE=ctws VERSION=0
 
 ### Hook the application `User` model with the engine
 
-By default the user model is `User` but you can change it by creating a `ctws.rb` initializer file in `config/initializers` and put this content in it:
+By default the user model is `User` but you can change it by creating or editing the `ctws.rb` initializer file in `config/initializers` and put this content in it:
 
 ```ruby 
 Ctws.user_class = "Account"
@@ -62,6 +62,14 @@ Ctws.user_class = "Account"
 The application `User` model **must have `email` and `password` attributes**.
 
 For `password` validation [`ActiveModel::SecurePassword::InstanceMethodsOnActivation authenticate`](https://apidock.com/rails/v4.2.7/ActiveModel/SecurePassword/InstanceMethodsOnActivation/authenticate) and [`Devise::Models::DatabaseAuthenticatable#valid_password?`](http://www.rubydoc.info/github/plataformatec/devise/Devise%2FModels%2FDatabaseAuthenticatable:valid_password%3F) User instance methods are supported.
+
+### Set the `JWT` expiry time
+
+By default the token expiry time is 24h but you can change it by creating or editing the `ctws.rb` initializer file in `config/initializers` and put this content in it:
+
+```ruby 
+Ctws.jwt_expiration_time = 24.hours.from_now
+```
 
 <!--
 Change the app's models so that they know that they are supposed to act like ctws:
@@ -80,14 +88,174 @@ end
 | Endpoint                                           | Functionality                                    | Requires Authentication?  |
 | -------------------------------------------------- | -----------------------------------------------: | :-----------------------: |
 | `GET    /ctws/v1/min_app_version`                  | Get latest minimum app version for all platforms | No                        |
+| `POST   /ctws/signup`                              | Signup                                           | No                        |
+| `POST   /ctws/login`                               | Login                                            | No                        |
+<!--
 | `GET    /ctws/v1/min_app_versions`                 | List all min_app_versions                        | Yes                       |
 | `GET    /ctws/v1/min_app_versions/:id `            | Get a min_app_version                            | Yes                       |
 | `POST   /ctws/v1/min_app_versions`                 | Creates a min_app_version                        | Yes                       |
 | `PUT    /ctws/v1/min_app_versions/:id`             | Updates a min_app_version                        | Yes                       |
 | `DELETE /ctws/v1/min_app_versions/:id`             | Delete a min_app_version                         | Yes                       |
-| `POST   /ctws/signup`                              | Signup                                           | No                        |
-| `POST   /ctws/login`                               | Login                                            | No                        |
+-->
 
+### min_app_version
+
+**request:**
+
+```bash
+curl localhost:3000/ws/v1/min_app_version
+```
+
+**response:**
+
+```json
+HTTP/1.1 200 OK
+Cache-Control: max-age=0, private, must-revalidate
+Content-Type: application/vnd.api+json; charset=utf-8
+ETag: W/"8dcf1379b7ee203a6d72b3c7773d47f4"
+Transfer-Encoding: chunked
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Request-Id: c1924546-0212-45fe-b86a-83ee3a3b2fa4
+X-Runtime: 0.003897
+X-XSS-Protection: 1; mode=block
+
+{
+  "data": [
+    {
+      "id": 3, 
+      "type": "min_app_version",
+      "attributes": {
+        "codename": "Second release", 
+        "description": "Second release Description text", 
+        "min_version": "0.0.2", 
+        "platform": "android", 
+        "store_uri": "htttps://fdsafdsafdsaf.cot", 
+        "updated_at": "2017-06-22T17:53:31.252+02:00"
+      }
+    }, 
+    {
+      "type": "min_app_version",
+      "id": 1, 
+      "attributes": {
+        "codename": "First Release", 
+        "description": "You need to update your app. You will be redirected to the corresponding store", 
+        "min_version": "0.0.1", 
+        "platform": "ios", 
+        "store_uri": "https://itunes.apple.com/", 
+        "updated_at": "2017-06-21T14:29:59.348+02:00"
+      }
+    }
+  ]
+}
+```
+### signup
+
+**request:**
+
+```bash
+curl -X POST -F "email=user@example.com" -F "password=123456789" http://localhost:3000/ws/v1/signup
+```
+
+**Successful response:**
+
+```json
+HTTP/1.1 201 Created
+Cache-Control: max-age=0, private, must-revalidate
+Content-Type: application/vnd.api+json; charset=utf-8
+ETag: W/"ab43e77c2d67636c5c0cd707e661c311"
+Transfer-Encoding: chunked
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Request-Id: 75f9d9cc-4ce2-4aed-9349-e995bb122f39
+X-Runtime: 1.727068
+X-XSS-Protection: 1; mode=block
+
+{
+  "data": {
+    "type": "user",
+    "id": 20, 
+    "attributes": {
+      "message": "Account created successfully",
+      "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMCwiZXhwIjoxNDk5ODU1MjQ5fQ.H9ljjShWOAv8b9xn9ZLKv-zgmH8xkPe6dkdhH4JrJPw", 
+      "created_at": "2017-07-11T12:27:27.916+02:00"
+    }
+  }
+}
+```
+
+**Error response:**
+
+```json
+HTTP/1.1 401 Unauthorized
+Cache-Control: no-cache
+Content-Type: application/vnd.api+json; charset=utf-8
+Transfer-Encoding: chunked
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Request-Id: b0d91125-446d-4ed3-95cb-4a702ee24289
+X-Runtime: 0.091940
+X-XSS-Protection: 1; mode=block
+
+{
+    "errors": {
+        "message": "Invalid credentials"
+    }
+}
+```
+
+### login
+
+**request:**
+
+```bash
+curl -X POST -F "email=user@example.com" -F "password=123456789" http://localhost:3000/ws/v1/login
+```
+
+**Successful response:**
+
+```json
+HTTP/1.1 200 OK
+Cache-Control: max-age=0, private, must-revalidate
+Content-Type: application/vnd.api+json; charset=utf-8
+ETag: W/"4e7a5faaf9eb480a7a7dadb734d01da1"
+Transfer-Encoding: chunked
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Request-Id: 565a8015-9087-480c-b5b6-1dbf634c7d83
+X-Runtime: 0.278055
+X-XSS-Protection: 1; mode=block
+
+{
+  "data": {
+    "type": "authentication",
+    "attributes": {
+      "message": "Authenticated user successfully",
+      "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNiwiZXhwIjoxNDk5ODU2MDgyfQ.FOLNcInu0yxnp_dqVnyzfzGNwKyv_ERoflhW4cvTa60"
+    }
+  }
+}
+```
+
+**Error response:**
+
+```json
+HTTP/1.1 401 Unauthorized
+Cache-Control: no-cache
+Content-Type: application/vnd.api+json; charset=utf-8
+Transfer-Encoding: chunked
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Request-Id: e95e4b63-3a83-409f-bd05-4cf2dea6136a
+X-Runtime: 0.015463
+X-XSS-Protection: 1; mode=block
+
+{
+    "errors": {
+        "message": "Invalid credentials"
+    }
+}
+```
 
 ## Tests
 

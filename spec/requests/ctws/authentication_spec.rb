@@ -30,7 +30,7 @@ module Ctws
         before { post '/ctws/v1/login', params: valid_credentials, headers: headers }
         
         it 'returns an authentication token' do
-          expect(json["data"]['auth_token']).not_to be_nil
+          expect(json["data"]["attributes"]["auth_token"]).not_to be_nil
         end
       end
       
@@ -39,7 +39,7 @@ module Ctws
         before { post '/ctws/v1/login', params: invalid_credentials, headers: headers }
         
         it 'returns a failure message' do
-          expect(json["data"]['message']).to match(/Invalid credentials/)
+          expect(json["errors"]["message"]).to match(/Invalid credentials/)
         end
       end
     end

@@ -1,12 +1,15 @@
 module Ctws
   class MinAppVersionsController < CtwsController
-    #skip_before_action :authorize_request, only: :min_app_version
     skip_before_action :authorize_request, only: [:min_app_version]
     before_action :set_min_app_version, only: [:show, :update, :destroy]
 
     # GET /min_app_version
-    def min_app_version     
-      json_response MinAppVersion.group(:platform)
+    def min_app_version
+      min_app_versions = []
+      MinAppVersion.group(:platform).each do |platform|
+        min_app_versions << platform.as_jsonapi
+      end
+      json_response min_app_versions
     end
     
     # GET /min_app_versions
@@ -16,7 +19,7 @@ module Ctws
 
     # GET /min_app_versions/1
     def show
-      json_response @min_app_version
+      json_response @min_app_version.as_jsonapi
     end
 
     # POST /min_app_versions
