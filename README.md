@@ -1,5 +1,7 @@
 # ctws
 
+[![Gem Version](https://badge.fury.io/rb/ctws.png)](https://badge.fury.io/rb/ctws)
+
 Rails gem to be used as Webservice RESTful JSON API with Rails 5.
 
 With `MinAppVersion` and `User` resources, with token based authentication [JSON Web Tokens](https://jwt.io/).
