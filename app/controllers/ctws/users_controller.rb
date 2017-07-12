@@ -33,7 +33,7 @@ module Ctws
     end
     
     def ctws_user_params
-      params.permit(:email, :password, :password_confirmation)
+      params.permit(Ctws.user_class_strong_params)
     end
   end
 end

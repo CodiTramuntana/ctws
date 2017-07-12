@@ -65,6 +65,11 @@ To opt out the user validation with the password change it by creating or editin
 ```ruby 
 Ctws.user_validate_with_password = false
 ```
+You can edit your app's required fields for signup by creating or editing the `ctws.rb` initializer file in `config/initializers` and put your strong parameters:
+
+```ruby 
+Ctws.user_class_strong_params = %i(email password password_confirmation
+```
 
 ### Set the `JWT` expiry time
 
