@@ -4,9 +4,6 @@ Rails gem to be used as Webservice RESTful JSON API with Rails 5.
 
 With `MinAppVersion` and `User` resources, with token based authentication [JSON Web Tokens](https://jwt.io/).
 
-## Usage
-How to use my plugin.
-
 ## Installation
 Add this line to your application's Gemfile:
 
@@ -59,9 +56,15 @@ By default the user model is `User` but you can change it by creating or editing
 Ctws.user_class = "Account"
 ```
 
-The application `User` model **must have `email` and `password` attributes**.
+The application `User` model **must have the `email` attribute**.
 
-For `password` validation [`ActiveModel::SecurePassword::InstanceMethodsOnActivation authenticate`](https://apidock.com/rails/v4.2.7/ActiveModel/SecurePassword/InstanceMethodsOnActivation/authenticate) and [`Devise::Models::DatabaseAuthenticatable#valid_password?`](http://www.rubydoc.info/github/plataformatec/devise/Devise%2FModels%2FDatabaseAuthenticatable:valid_password%3F) User instance methods are supported.
+The **`password` is optional** by default a user is validated with password, for `password` validation [`ActiveModel::SecurePassword::InstanceMethodsOnActivation authenticate`](https://apidock.com/rails/v4.2.7/ActiveModel/SecurePassword/InstanceMethodsOnActivation/authenticate) and [`Devise::Models::DatabaseAuthenticatable#valid_password?`](http://www.rubydoc.info/github/plataformatec/devise/Devise%2FModels%2FDatabaseAuthenticatable:valid_password%3F) User instance methods are supported.
+
+To opt out the user validation with the password change it by creating or editing the `ctws.rb` initializer file in `config/initializers` and put this content in it:
+
+```ruby 
+Ctws.user_validate_with_password = false
+```
 
 ### Set the `JWT` expiry time
 
