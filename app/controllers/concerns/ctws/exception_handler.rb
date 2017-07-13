@@ -19,39 +19,35 @@ module Ctws
     included do
       # Define custom handlers
       rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two
-      rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
       rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
       rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
       rescue_from ExceptionHandler::UnprocessableEntity, with: :four_twenty_two
+      rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
       rescue_from ExceptionHandler::ExpiredSignature, with: :four_ninety_eight
       rescue_from ExceptionHandler::RoutingError, with: :not_found
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
       rescue_from ActionController::RoutingError, with: :not_found
-      
-      rescue_from ActiveRecord::RecordInvalid do |e|
-        json_response({ message: e.message }, :unprocessable_entity)
-      end
+
     end
     
     # JSON response with message; Status code 401 - Unauthorized
     def unauthorized_request(e)
-      json_response({ message: e.message }, :unauthorized)
+      json_response([{ message: e.message, error_code: "401"}], :unauthorized)
     end
     
-    # JSON response with message; Status code 401 - Unauthorized
+    # JSON response with message; Status code 404 - Not Found
     def not_found(e)
-      json_response({ message: e.message }, :not_found)
+      json_response([{ message: e.message, error_code: "404" }], :not_found)
     end
     
     # JSON response with message; Status code 422 - unprocessable entity
     def four_twenty_two(e)
-      json_response({ message: e.message }, :unprocessable_entity)
+      json_response([{ message: e.message, error_code: "422" }], :unprocessable_entity)
     end
 
-    
     # JSON response with message; Status code 498 - Invalid Token
     def four_ninety_eight(e)
-      json_response({ message: e.message }, :invalid_token)
+      json_response([{ message: e.message, error_code: "498" }], :invalid_token)
     end
     
   end

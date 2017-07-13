@@ -1,3 +1,3 @@
 module Ctws
-  VERSION = '0.1.5.alpha'
+  VERSION = '0.1.7.alpha'
 end
