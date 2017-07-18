@@ -21,7 +21,7 @@ module Ctws
     private
     
     def user_as_jsonapi user, auth_token
-      {
+      [{
         type: ActiveModel::Naming.param_key(Ctws.user_class),
         id: user.id,
         attributes: {
@@ -29,7 +29,7 @@ module Ctws
           auth_token: auth_token, 
           created_at: user.created_at
         }
-      }
+      }]
     end
     
     def ctws_user_params

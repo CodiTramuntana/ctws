@@ -12,13 +12,13 @@ module Ctws
     private
     
     def auth_as_jsonapi auth_token
-      {
+      [{
         type: controller_name,
         attributes: {
           message: Ctws::Message.authenticated_user_success, 
           auth_token: auth_token, 
         }
-      }
+      }]
     end
     
     def auth_params
