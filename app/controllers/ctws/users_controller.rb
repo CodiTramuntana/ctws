@@ -28,6 +28,22 @@ module Ctws
           message: Ctws::Message.account_created, 
           auth_token: auth_token, 
           created_at: user.created_at
+        },
+        relationships: {
+          device_apps: {
+            data: [{ 
+              type: ActiveModel::Naming.param_key(Ctws.device_class), 
+              id: Ctws.device_class.where("#{Ctws.user_class.name.underscore}_id": user.id).last.id,
+              attributes: Ctws.device_class.where("#{Ctws.user_class.name.underscore}_id": user.id).last
+            }]
+          },
+          profile: {
+            data: [{ 
+              type: ActiveModel::Naming.param_key(Ctws.profile_class), 
+              id: Ctws.profile_class.where("#{Ctws.user_class.name.underscore}_id": user.id).last.id,
+              attributes: Ctws.profile_class.where("#{Ctws.user_class.name.underscore}_id": user.id)
+            }]
+          }
         }
       }]
     end

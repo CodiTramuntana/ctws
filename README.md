@@ -56,6 +56,9 @@ By default the user model is `User` but you can change it by creating or editing
 
 ```ruby 
 Ctws.user_class = "Account"
+
+Ctws.device_class = "DeviceApp" # TODO: documentation
+Ctws.profile_class = "Profile" # TODO: documentation
 ```
 
 The application `User` model **must have the `email` attribute**.
@@ -70,7 +73,7 @@ Ctws.user_validate_with_password = false
 You can edit your app's required fields for signup by creating or editing the `ctws.rb` initializer file in `config/initializers` and put your strong parameters:
 
 ```ruby 
-Ctws.user_class_strong_params = %i(email password password_confirmation
+Ctws.user_class_strong_params = [:email, :password, :password_confirmation]
 ```
 
 ### Set the `JWT` expiry time
