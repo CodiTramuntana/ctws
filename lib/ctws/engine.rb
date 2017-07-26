@@ -1,5 +1,6 @@
 module Ctws
   class Engine < ::Rails::Engine
+    engine_name "ctws"
     isolate_namespace Ctws
     config.generators.api_only = true
     

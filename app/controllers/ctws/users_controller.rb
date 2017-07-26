@@ -41,7 +41,7 @@ module Ctws
             data: [{ 
               type: ActiveModel::Naming.param_key(Ctws.profile_class), 
               id: Ctws.profile_class.where("#{Ctws.user_class.name.underscore}_id": user.id).last.id,
-              attributes: Ctws.profile_class.where("#{Ctws.user_class.name.underscore}_id": user.id)
+              attributes: Ctws.profile_class.where("#{Ctws.user_class.name.underscore}_id": user.id).last
             }]
           }
         }
