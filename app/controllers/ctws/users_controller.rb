@@ -13,40 +13,11 @@ module Ctws
       elsif !Ctws.user_validate_with_password
         auth_token = Ctws::AuthenticateUser.new(ctws_user.email).call
       end
-      # response = { message: Ctws::Message.account_created, auth_token: auth_token }
       
-      json_response(user_as_jsonapi(ctws_user, auth_token), :created)
+      json_response(ctws_user.created_as_jsonapi({"#{ctws_user.model_name.singular}": ctws_user, token: auth_token}), :created)
     end
     
     private
-    
-    def user_as_jsonapi user, auth_token
-      [{
-        type: ActiveModel::Naming.param_key(Ctws.user_class),
-        id: user.id,
-        attributes: {
-          message: Ctws::Message.account_created, 
-          auth_token: auth_token, 
-          created_at: user.created_at
-        },
-        relationships: {
-          device_apps: {
-            data: [{ 
-              type: ActiveModel::Naming.param_key(Ctws.device_class), 
-              id: Ctws.device_class.where("#{Ctws.user_class.name.underscore}_id": user.id).last.id,
-              attributes: Ctws.device_class.where("#{Ctws.user_class.name.underscore}_id": user.id).last.attributes.except("id", "account_id", "created_at", "updated_at"),
-            }]
-          },
-          profile: {
-            data: [{ 
-              type: ActiveModel::Naming.param_key(Ctws.profile_class), 
-              id: Ctws.profile_class.where("#{Ctws.user_class.name.underscore}_id": user.id).last.id,
-              attributes: Ctws.profile_class.where("#{Ctws.user_class.name.underscore}_id": user.id).last.attributes.except("id", "account_id", "created_at", "updated_at"),
-            }]
-          }
-        }
-      }]
-    end
     
     def ctws_user_params
       params.permit(Ctws.user_class_strong_params)
