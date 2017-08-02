@@ -56,9 +56,6 @@ By default the user model is `User` but you can change it by creating or editing
 
 ```ruby 
 Ctws.user_class = "Account"
-
-Ctws.device_class = "DeviceApp" # TODO: documentation
-Ctws.profile_class = "Profile" # TODO: documentation
 ```
 
 The application `User` model **must have the `email` attribute**.
