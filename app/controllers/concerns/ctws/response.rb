@@ -10,11 +10,11 @@ module Ctws
         self.data_payload(object)
       end
     end
-    
+
     def json_response(object = {}, status = :ok)
       render json: self.payload?(object, status), status: status
     end
-    
+
     def data_payload(object)
       {data: object}
     end

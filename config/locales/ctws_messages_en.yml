@@ -1,0 +1,14 @@
+en:
+  ctws:
+    account_created: "Account created successfully."
+    account_doesnt_exist: "Account doesn't exist."
+    account_not_created: "Account could not be created."
+    authenticated_user_success: "Authenticated user successfully."
+    expired_token: "Sorry, your token has expired. Please login to continue."
+    invalid_credentials: "Invalid credentials."
+    invalid_token: "Invalid token."
+    missing_token: "Missing token."
+    not_found: "Sorry, %{record} not found."
+    record_not_confirmed: "%{record} not confirmed."
+    unauthorized: "Unauthorized request."
+    unmatched_route: "No route matches %{route}."

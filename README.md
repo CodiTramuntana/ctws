@@ -36,13 +36,13 @@ server. It can be whatever you want.
 
 ## Engine setup
 
-The engine contains migrations for the `ctws_min_app_version` and `xxx` table which need to be created in the application's database so that the engine's models can query them correctly. 
+The engine contains migrations for the `ctws_min_app_version` and `xxx` table which need to be created in the application's database so that the engine's models can query them correctly.
 To copy these migrations into the application run the following command from the Rails App root, then run these migrations:
 
 ```bash
 rails ctws:install:migrations
 rails db:migrate
-``` 
+```
 
 If you want to revert engine's migrations before removing it. To revert all migrations from blorgh engine you can run code such as:
 
@@ -54,7 +54,7 @@ bin/rails db:migrate SCOPE=ctws VERSION=0
 
 By default the user model is `User` but you can change it by creating or editing the `ctws.rb` initializer file in `config/initializers` and put this content in it:
 
-```ruby 
+```ruby
 Ctws.user_class = "Account"
 ```
 
@@ -64,12 +64,12 @@ The **`password` is optional** by default a user is validated with password, for
 
 To opt out the user validation with the password change it by creating or editing the `ctws.rb` initializer file in `config/initializers` and put this content in it:
 
-```ruby 
+```ruby
 Ctws.user_validate_with_password = false
 ```
 You can edit your app's required fields for signup by creating or editing the `ctws.rb` initializer file in `config/initializers` and put your strong parameters:
 
-```ruby 
+```ruby
 Ctws.user_class_strong_params = [:email, :password, :password_confirmation]
 ```
 
@@ -77,7 +77,7 @@ Ctws.user_class_strong_params = [:email, :password, :password_confirmation]
 
 By default the token expiry time is 24h but you can change it by creating or editing the `ctws.rb` initializer file in `config/initializers` and put this content in it:
 
-```ruby 
+```ruby
 Ctws.jwt_expiration_time = 24.hours.from_now
 ```
 
@@ -92,6 +92,14 @@ class User < ApplicationRecord
 end
 ```
 -->
+
+### Response messages in users' locale (i18n)
+
+In your app set your accepted languages, add to `application.rb`:
+
+```
+config.i18n.available_locales = %w(en es fr ca)
+```
 
 ## Endpoints
 
@@ -133,26 +141,26 @@ X-XSS-Protection: 1; mode=block
 {
   "data": [
     {
-      "id": 3, 
+      "id": 3,
       "type": "min_app_version",
       "attributes": {
-        "codename": "Second release", 
-        "description": "Second release Description text", 
-        "min_version": "0.0.2", 
-        "platform": "android", 
-        "store_uri": "htttps://fdsafdsafdsaf.cot", 
+        "codename": "Second release",
+        "description": "Second release Description text",
+        "min_version": "0.0.2",
+        "platform": "android",
+        "store_uri": "htttps://fdsafdsafdsaf.cot",
         "updated_at": "2017-06-22T17:53:31.252+02:00"
       }
-    }, 
+    },
     {
       "type": "min_app_version",
-      "id": 1, 
+      "id": 1,
       "attributes": {
-        "codename": "First Release", 
-        "description": "You need to update your app. You will be redirected to the corresponding store", 
-        "min_version": "0.0.1", 
-        "platform": "ios", 
-        "store_uri": "https://itunes.apple.com/", 
+        "codename": "First Release",
+        "description": "You need to update your app. You will be redirected to the corresponding store",
+        "min_version": "0.0.1",
+        "platform": "ios",
+        "store_uri": "https://itunes.apple.com/",
         "updated_at": "2017-06-21T14:29:59.348+02:00"
       }
     }
@@ -184,10 +192,10 @@ X-XSS-Protection: 1; mode=block
 {
   "data": {
     "type": "user",
-    "id": 20, 
+    "id": 20,
     "attributes": {
       "message": "Account created successfully",
-      "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMCwiZXhwIjoxNDk5ODU1MjQ5fQ.H9ljjShWOAv8b9xn9ZLKv-zgmH8xkPe6dkdhH4JrJPw", 
+      "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMCwiZXhwIjoxNDk5ODU1MjQ5fQ.H9ljjShWOAv8b9xn9ZLKv-zgmH8xkPe6dkdhH4JrJPw",
       "created_at": "2017-07-11T12:27:27.916+02:00"
     }
   }
@@ -271,7 +279,7 @@ X-XSS-Protection: 1; mode=block
 
 running `rspec` will run tests and output a report, first run migrations the tests:
 
-```bash 
+```bash
 rails db:migrate RAILS_ENV=test
 rspec
 ```

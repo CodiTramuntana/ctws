@@ -1,0 +1,14 @@
+ca:
+  ctws:
+    account_created: "S'ha creat el compte amb èxit."
+    account_doesnt_exist: "El compte no existeix."
+    account_not_created: "No s'ha pogut crear el compte."
+    authenticated_user_success: "Usuari autenticat amb èxit."
+    expired_token: "Ho sentim, el vostre token ha caducat. Inicieu sessió per continuar."
+    invalid_credentials: "Credencials no vàlides."
+    invalid_token: "Token invàlid."
+    missing_token: "Falta token."
+    not_found: "No s'ha trobat %{record}."
+    record_not_confirmed: "%{record} no confirmat."
+    unauthorized: "Sol·licitud no autoritzada."
+    unmatched_route: "Cap ruta coincideix amb %{route}."

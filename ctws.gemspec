@@ -15,12 +15,13 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
-  
+
   s.test_files = Dir["spec/**/*"]
-  
+
   s.add_dependency "rails", "~> 5.0"
   s.add_dependency "bcrypt", "~> 3.1"
   s.add_dependency "jwt", "~> 1.5"
+  s.add_dependency 'http_accept_language', '~> 2.0', '>= 2.0.5'
   # s.add_dependency "rack-cors", require: 'rack/cors'
   # s.add_dependency "rack-attack"
 

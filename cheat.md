@@ -6,7 +6,7 @@ list latest min_version:
 curl localhost:3000/ws/v1/min_app_version
 
 http :3000/ws/v1/min_app_version
-``` 
+```
 
 ---
 
@@ -26,7 +26,7 @@ signup:
 ```bash
 curl -X POST -F "email=agusti.br@coditramuntana.com" -F "password=123456789" http://localhost:3000/ws/v1/signup
 
-http POST :3000/ws/v1/signup email="agustibr.10@coditramuntana.com" password="123456789"
+http POST :3000/ws/v1/signup email="agustibr+10@coditramuntana.com" password="123456789"
 ```
 
 ---
