@@ -1,8 +1,5 @@
 es:
   ctws:
-    account_created: "Cuenta creada con éxito."
-    account_doesnt_exist: "La cuenta no existe."
-    account_not_created: "La cuenta no pudo ser creada."
     authenticated_user_success: "Usuario autenticado con éxito."
     expired_token: "Tu token ha expirado, por favor inicie sesión para continuar."
     invalid_credentials: "Credenciales no válidas."
@@ -10,5 +7,9 @@ es:
     missing_token: "Falta token."
     not_found: "Lo sentimos, %{record} no encontrado."
     record_not_confirmed: "%{record} not confirmado."
+    resource_created: "%{resource} creado con éxito."
+    resource_doesnt_exist: "%{resource} no existe."
+    resource_not_created: "%{resource} no pudo ser creada."
+    resource_updated: "%{resource} actualizado con éxito."
     unauthorized: "Solicitud no autorizada."
     unmatched_route: "Ninguna ruta coincide con %{route}."

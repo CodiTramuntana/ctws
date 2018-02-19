@@ -1,7 +1,7 @@
 module Ctws
   class JsonWebToken
     require 'jwt'
-    
+
     # secret to encode and decode token
     HMAC_SECRET = Rails.application.secrets.secret_key_base
 
@@ -17,9 +17,13 @@ module Ctws
       body = JWT.decode(token, HMAC_SECRET)[0]
       HashWithIndifferentAccess.new body
       # rescue from expiry exception
-    rescue JWT::ExpiredSignature, JWT::VerificationError => e
-      # raise custom error to be handled by custom handler
-      raise Ctws::ExceptionHandler::ExpiredSignature, e.message
+      rescue JWT::ExpiredSignature => e
+        # raise custom error to be handled by custom handler
+        raise Ctws::ExceptionHandler::ExpiredSignature, e.message
+      rescue JWT::VerificationError => e
+        # raise custom error to be handled by custom handler
+        raise Ctws::ExceptionHandler::VerificationError, Ctws::Message.invalid_token
+
     end
   end
 end

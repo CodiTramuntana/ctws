@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 5.0"
   s.add_dependency "bcrypt", "~> 3.1"
-  s.add_dependency "jwt", "~> 1.5"
+  s.add_dependency "jwt", "~> 2.1"
   s.add_dependency 'http_accept_language', '~> 2.0', '>= 2.0.5'
   # s.add_dependency "rack-cors", require: 'rack/cors'
   # s.add_dependency "rack-attack"

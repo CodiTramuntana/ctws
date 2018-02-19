@@ -8,12 +8,12 @@ module Ctws
       min_app_versions = []
       MinAppVersion.all.order(updated_at: :desc).group_by(&:platform).each do |platforms|
         platforms[1].each_with_index do |platform, index|
-          min_app_versions << {platforms[0] => platform.as_jsonapi} if index == 0
+          min_app_versions.push(platform.as_jsonapi) if index == 0
         end
       end
       json_response min_app_versions
     end
-    
+
     # GET /min_app_versions
     def index
       json_response MinAppVersion.all

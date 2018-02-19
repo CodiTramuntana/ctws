@@ -16,6 +16,7 @@ module Ctws
     class UnprocessableEntity < StandardError; end
     class RoutingError < StandardError; end
     class NotConfirmed < StandardError; end
+    class VerificationError < StandardError; end
 
     included do
       # Define custom handlers
@@ -29,6 +30,7 @@ module Ctws
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
       rescue_from ActionController::RoutingError, with: :not_found
       rescue_from ExceptionHandler::NotConfirmed, with: :not_confirmed
+      rescue_from ExceptionHandler::VerificationError, with: :four_ninety_eight
     end
 
     # JSON response with message; Status code 401 - Unauthorized
