@@ -28,15 +28,15 @@ module Ctws
       I18n.t('ctws.resource_created', resource: resource)
     end
 
-    def self.resource_updated(resource: resource)
+    def self.resource_updated(resource)
       I18n.t('ctws.resource_updated', resource: resource)
     end
 
-    def self.resource_not_created(resource: resource)
+    def self.resource_not_created(resource)
       I18n.t('ctws.resource_not_created', resource: resource)
     end
 
-    def self.resource_doesnt_exist(resource: resource)
+    def self.resource_doesnt_exist(resource)
       I18n.t('ctws.resource_doesnt_exist', resource: resource)
     end
 
