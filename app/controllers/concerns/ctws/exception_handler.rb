@@ -40,26 +40,26 @@ module Ctws
 
     # JSON response with message; Status code 401 - Unauthorized
     def unauthorized_request(e)
-      json_response([{ message: e.message, error_code: "401"}], :unauthorized)
+      json_response([{ message: e.message, error_code: 401}], :unauthorized)
     end
 
     # JSON response with message; Status code 404 - Not Found
     def not_found(e)
-      json_response([{ message: e.message, error_code: "404" }], :not_found)
+      json_response([{ message: e.message, error_code: 404 }], :not_found)
     end
 
     def not_confirmed(e)
-      json_response([{ message: e.message, error_code: "403" }], :unauthorized)
+      json_response([{ message: e.message, error_code: 403 }], :unauthorized)
     end
 
     # JSON response with message; Status code 422 - unprocessable entity
     def four_twenty_two(e)
-      json_response([{ message: e.message, error_code: "422" }], :unprocessable_entity)
+      json_response([{ message: e.message, error_code: 422 }], :unprocessable_entity)
     end
 
     # JSON response with message; Status code 498 - Invalid Token
     def four_ninety_eight(e)
-      json_response([{ message: e.message, error_code: "498" }], :invalid_token)
+      json_response([{ message: e.message, error_code: 498 }], :invalid_token)
     end
 
   end
