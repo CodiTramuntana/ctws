@@ -20,12 +20,17 @@ module Ctws
 
     included do
       # Define custom handlers
+      # 422 - Unprocessable Entity
       rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two
       rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
       rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
       rescue_from ExceptionHandler::UnprocessableEntity, with: :four_twenty_two
+      rescue_from ArgumentError, with: :four_twenty_two
+      # 401 - Unauthorized
       rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
+      # 498 - Invalid Token
       rescue_from ExceptionHandler::ExpiredSignature, with: :four_ninety_eight
+      # 404 - Not Found
       rescue_from ExceptionHandler::RoutingError, with: :not_found
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
       rescue_from ActionController::RoutingError, with: :not_found
