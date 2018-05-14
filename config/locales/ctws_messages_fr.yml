@@ -1,0 +1,15 @@
+fr:
+  ctws:
+    authenticated_user_success: "%{resource} authentifiée avec succès."
+    expired_token: "Désolé, votre token a expiré. Veuillez vous connecter pour continuer."
+    invalid_credentials: "Identifiants invalides."
+    invalid_token: "Token invalide."
+    missing_token: "Token manquant."
+    not_found: "%{record} non trouvé."
+    record_not_confirmed: "%{record} non confirmé."
+    resource_created: "%{resource} créée avec succès."
+    resource_doesnt_exist: "%{resource} n'existe pas."
+    resource_not_created: "%{resource} n'a pas pu être créée."
+    resource_updated: "%{resource} créée avec succès."
+    unauthorized: "Requête non autorisée."
+    unmatched_route: "Aucune route ne coïncide avec %{route}."
