@@ -4,7 +4,10 @@
 
 Rails gem to be used as Webservice RESTful JSON API with Rails 5.
 
-With `MinAppVersion` and `User` resources, with token based authentication [JSON Web Tokens](https://jwt.io/).
+Features:
+- `MinAppVersion` and `User` resources
+- token based authentication [JSON Web Tokens](https://jwt.io/).
+- Json Api 
 
 ## Installation
 Add this line to your application's Gemfile:
