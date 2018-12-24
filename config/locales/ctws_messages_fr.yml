@@ -7,7 +7,7 @@ fr:
     missing_token: "Token manquant."
     not_found: "%{record} non trouvé."
     record_not_confirmed: "%{record} non confirmé."
-    resource_created: "%{resource} créée avec succès."
+    resource_created: "%{resource} créé avec succès."
     resource_doesnt_exist: "%{resource} n'existe pas."
     resource_not_created: "%{resource} n'a pas pu être créée."
     resource_updated: "%{resource} créée avec succès."
