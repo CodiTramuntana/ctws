@@ -1,7 +1,10 @@
 module Ctws
   # Under development: BETA
 
-  VERSION = '0.2.3.beta'
+  VERSION = '0.2.4.beta'
+
+  # PATCH - 0.2.4.beta - 24/05/2019
+  # [REFACTOR] Refactor user authentication to a more generic strategy.
 
   # PATCH - 0.2.3.beta - 31/11/2018
   # [REFACTOR] Add exception backtrace to error responses.
