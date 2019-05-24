@@ -26,9 +26,14 @@ module Ctws
         Ctws.user_class.find_by(email: email)
       end
 
-      return user if user
+      return user if user && ensure_is_ctws_user_class(user)
       # raise Authentication error if credentials are invalid
       raise(Ctws::ExceptionHandler::AuthenticationError, Ctws::Message.invalid_credentials)
+    end
+
+    def ensure_is_ctws_user_class user
+      return true if user.class.base_class == Ctws.user_class
+      raise "user_authentication_callback does not match Ctws.user_class" unless Rails.env.production?
     end
   end
 end

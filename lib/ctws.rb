@@ -6,6 +6,7 @@ module Ctws
   mattr_accessor :jwt_expiration_time
   mattr_accessor :jwt_auth_token_attrs
   # if nil or false user password won't be checked
+  # user_authentication_callback will be called with email and password arguments.
   mattr_accessor :user_authentication_callback
 
   def self.user_class
