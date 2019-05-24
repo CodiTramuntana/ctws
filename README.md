@@ -70,10 +70,10 @@ To opt out the user validation with the password change it by creating or editin
 To enable user validation with a password and verify that the user meets certain characteristics (such as being confirmed), you must create or edit the `ctws.rb` initializer file  at `config/initializers` and write something similar to the following:
 
 ```ruby
-Ctws.user_authentication_callback = ->(user_email, user_password) do
+Ctws.user_authentication_callback = lambda { |user_email, user_password|
   user = User.find_by(email: user_email)
   return user if user.try(:valid_password?, user_password) && user.enabled?
-end
+}
 ```
 
 If you don't put this content, the validation of the user will only be by email.
