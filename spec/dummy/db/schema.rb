@@ -10,30 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622072636) do
+ActiveRecord::Schema.define(version: 2017_06_22_072636) do
 
   create_table "ctws_min_app_versions", force: :cascade do |t|
-    t.string   "codename"
-    t.text     "description"
-    t.string   "platform"
-    t.string   "min_version"
-    t.string   "store_uri"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "ctws_users", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string "codename"
+    t.text "description"
+    t.string "platform"
+    t.string "min_version"
+    t.string "store_uri"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

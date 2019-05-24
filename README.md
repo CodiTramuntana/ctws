@@ -7,7 +7,7 @@ Rails gem to be used as Webservice RESTful JSON API with Rails 5.
 Features:
 - `MinAppVersion` and `User` resources
 - token based authentication [JSON Web Tokens](https://jwt.io/).
-- Json Api 
+- Json Api
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -64,12 +64,20 @@ Ctws.user_class = "Account"
 The application `User` model **must have the `email` attribute**.
 
 The **`password` is optional** by default a user is validated with password, for `password` validation [`ActiveModel::SecurePassword::InstanceMethodsOnActivation authenticate`](https://apidock.com/rails/v4.2.7/ActiveModel/SecurePassword/InstanceMethodsOnActivation/authenticate) and [`Devise::Models::DatabaseAuthenticatable#valid_password?`](http://www.rubydoc.info/github/plataformatec/devise/Devise%2FModels%2FDatabaseAuthenticatable:valid_password%3F) User instance methods are supported.
+<!--
+To opt out the user validation with the password change it by creating or editing the `ctws.rb` initializer file in `config/initializers` and put this content in it: -->
 
-To opt out the user validation with the password change it by creating or editing the `ctws.rb` initializer file in `config/initializers` and put this content in it:
+To enable user validation with a password and verify that the user meets certain characteristics (such as being confirmed), you must create or edit the `ctws.rb` initializer file  at `config/initializers` and write something similar to the following:
 
 ```ruby
-Ctws.user_validate_with_password = false
+Ctws.user_authentication_callback = ->(user_email, user_password) do
+  user = User.find_by(email: user_email)
+  return user if user.try(:valid_password?, user_password) && user.enabled?
+end
 ```
+
+If you don't put this content, the validation of the user will only be by email.
+
 You can edit your app's required fields for signup by creating or editing the `ctws.rb` initializer file in `config/initializers` and put your strong parameters:
 
 ```ruby
