@@ -3,7 +3,7 @@ module Ctws
 
   VERSION = '0.3.0.beta'
 
-  # PATCH - 0.3.0.beta - 24/05/2019
+  # MINOR - 0.3.0.beta - 24/05/2019
   # [REFACTOR] Refactor user authentication to a more generic strategy.
 
   # PATCH - 0.2.3.beta - 31/11/2018
