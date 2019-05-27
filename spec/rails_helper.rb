@@ -11,7 +11,7 @@ require 'jwt'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'database_cleaner'
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -47,9 +47,10 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-  
-  # add `FactoryGirl` methods
-  config.include FactoryGirl::Syntax::Methods
+
+  # add `FactoryBot` methods
+  # config.factory_bot.definition_file_paths = ["spec/factories"]
+  config.include FactoryBot::Syntax::Methods
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
@@ -78,7 +79,7 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-  
+
   config.include Ctws::RequestSpecHelper
   config.include Ctws::ControllerSpecHelper
   # Filter lines from Rails gems in backtraces.

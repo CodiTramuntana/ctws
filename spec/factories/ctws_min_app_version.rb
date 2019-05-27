@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :ctws_min_app_version, class: Ctws::MinAppVersion do
     codename { Faker::Lorem.words(3) }
     description { Faker::Lorem.sentences(1) }

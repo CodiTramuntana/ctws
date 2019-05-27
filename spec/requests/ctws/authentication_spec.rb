@@ -21,25 +21,25 @@ module Ctws
           password: Faker::Internet.password
         }.to_json
       end
-      
+
       # set request.headers to our custom headers
       # before { allow(request).to receive(:headers).and_return(headers) }
-      
+
       # returns auth token when request is valid
       context 'When request is valid' do
         before { post '/ctws/v1/login', params: valid_credentials, headers: headers }
-        
+
         it 'returns an authentication token' do
           expect(json["data"]["attributes"]["auth_token"]).not_to be_nil
         end
       end
-      
+
       # returns failure message when request is invalid
       context 'When request is invalid' do
         before { post '/ctws/v1/login', params: invalid_credentials, headers: headers }
-        
+
         it 'returns a failure message' do
-          expect(json["errors"]["message"]).to match(/Invalid credentials/)
+          expect(json["errors"][0]["message"]).to match(/Invalid credentials/)
         end
       end
     end

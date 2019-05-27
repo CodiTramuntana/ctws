@@ -4,7 +4,7 @@ module Ctws
   RSpec.describe AuthorizeApiRequest, class: 'Ctws::AuthorizeApiRequest' do
     # Create test user
     let(:ctws_user) { create(:ctws_user) }
-    
+
     # Mock `Authorization` header
     let(:header) { { 'Authorization' => token_generator(ctws_user.id) } }
     # Invalid request subject
@@ -28,7 +28,7 @@ module Ctws
         context 'when missing token' do
           it 'raises a MissingToken error' do
             expect { invalid_request_obj.call }
-              .to raise_error(Ctws::ExceptionHandler::MissingToken, 'Missing token')
+              .to raise_error(Ctws::ExceptionHandler::MissingToken, /Missing token/)
           end
         end
 
